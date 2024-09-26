@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum TaskStatus {
+  COMPLETED
+  IN_PROGRESS
+  CANCELLED
+}
+
+model Task {
+  id            String      @id @default(auto()) @db.ObjectId @map("_id")
+  author        String      @db.ObjectId
+  status        TaskStatus  @default(IN_PROGRESS)
+  title         String
+  description   String?
+  createdAt     DateTime    @default(now())
+
+  @@map("tasks")
+}
