@@ -73,7 +73,7 @@ export default function Home() {
       <Card className="w-full sm:w-[450px] flex flex-col flex-grow sm:flex-grow-0 sm:max-h-[512px] overflow-y-auto">
         <SignedOut>
           <SecondaryText>
-            You have to <Button asChild variant="link" size="sm" className="p-0 text-xs"><SignInButton>sign in</SignInButton></Button> if you want to use application.
+            You have to <Button asChild variant="link" size="sm" className="p-0 text-xs mx-1"><SignInButton>sign in</SignInButton></Button> if you want to use application.
           </SecondaryText>
         </SignedOut>
         <SignedIn>
