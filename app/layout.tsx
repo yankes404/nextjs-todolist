@@ -4,9 +4,9 @@ import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@c
 import { dark } from '@clerk/themes';
 
 import {
-  QueryClient,
   QueryClientProvider
 } from "@tanstack/react-query";
+import { queryClient } from '@/query-client';
 
 import { Poppins } from "next/font/google";
 
@@ -14,7 +14,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Button } from '@/components/ui/button';
 import { Toaster } from '@/components/ui/sonner';
-import { queryClient } from '@/query-client';
 
 const poppins = Poppins({
   subsets: ["latin"],
