@@ -1,6 +1,4 @@
 import { ButtonLink } from "@/components/button-link";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function AboutPage () {
     return (
