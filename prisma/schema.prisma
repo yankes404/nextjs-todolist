@@ -15,7 +15,7 @@ enum TaskStatus {
 
 model Task {
   id            String      @id @default(auto()) @db.ObjectId @map("_id")
-  author        String      @db.ObjectId
+  author        String
   status        TaskStatus  @default(IN_PROGRESS)
   title         String
   description   String?

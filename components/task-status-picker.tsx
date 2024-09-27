@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { TaskStatus } from "@/types/Task";
+import { TaskStatus } from "@prisma/client";
+import { FaSpinner } from "react-icons/fa6";
 
 interface TaskStatusCircleProps {
     status: TaskStatus;
@@ -28,9 +29,9 @@ export const TaskStatusCircle = ({
             disabled={isSelected}
             className={cn(
                 "size-2.5 rounded-full opacity-50 hover:opacity-100 transition disabled:pointer-events-none disabled:opacity-100",
-                status === "completed" && "bg-green-500",
-                status === "in_progress" && "bg-amber-500",
-                status === "cancelled" && "bg-red-500",
+                status === "COMPLETED" && "bg-green-500",
+                status === "IN_PROGRESS" && "bg-amber-500",
+                status === "CANCELLED" && "bg-red-500",
             )}
         />
     )
@@ -39,11 +40,13 @@ export const TaskStatusCircle = ({
 interface Props {
     selected?: TaskStatus;
     onChange?: (status: TaskStatus) => void;
+    isPending?: boolean;
 }
 
 export const TaskStatusPicker = ({
     selected,
-    onChange
+    onChange,
+    isPending
 }: Props) => {
     const onClick = (status?: TaskStatus) => {
         if (onChange && status) {
@@ -53,18 +56,23 @@ export const TaskStatusPicker = ({
 
     return (
         <div className="flex items-center gap-1.5">
+            {isPending && (
+                <FaSpinner
+                    className="size-2.5 animate-spin text-zinc-400 mr-2"
+                />
+            )}
             <TaskStatusCircle
-                status="completed"
+                status="COMPLETED"
                 selected={selected}
                 onSelect={onClick}
             />
             <TaskStatusCircle
-                status="in_progress"
+                status="IN_PROGRESS"
                 selected={selected}
                 onSelect={onClick}
             />
             <TaskStatusCircle
-                status="cancelled"
+                status="CANCELLED"
                 selected={selected}
                 onSelect={onClick}
             />
