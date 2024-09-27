@@ -9,7 +9,7 @@ export default function Notfound () {
                     404
                 </strong>
                 <p className="text-sm font-medium text-zinc-500">
-                    This page couldn't be found
+                    This page couldn&apos;t be found
                 </p>
             </div>
             <Button

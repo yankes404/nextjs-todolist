@@ -6,14 +6,12 @@ import { toast } from "sonner";
 import { queryClient } from "@/app/layout";
 import { DeleteTaskDialog } from "./dialogs/delete-task-dialog";
 
-interface Props extends Task {};
-
 export const TaskCard = ({
     id,
     title,
     description,
     status
-}: Props) => {
+}: Task) => {
     const mutation = useUpdateTaskMutation(id);
 
     const onUpdate = (status: TaskStatus) => {

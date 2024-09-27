@@ -79,7 +79,7 @@ export default function Home() {
         <SignedIn>
           {isPending ? (
             <SecondaryText>
-              <FaSpinner className="animate-spin mr-2" /><span>We're loading data...</span>
+              <FaSpinner className="animate-spin mr-2" /><span>We&apos;re loading data...</span>
             </SecondaryText>
           ): searchedData.map((task) => (
             <TaskCard

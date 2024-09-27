@@ -8,7 +8,6 @@ import {
   QueryClientProvider
 } from "@tanstack/react-query";
 
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
 import "./globals.css";
