@@ -4,10 +4,10 @@ declare global {
     let prisma: PrismaClient | undefined;
 }
 
-// @ts-ignore
+// @ts-expect-error
 const db = globalThis.prisma || new PrismaClient();
 
-// @ts-ignore
+// @ts-expect-error
 if(process.env.NODE_ENV !== 'production') globalThis.prisma = db;
 
 export { db };
