@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client'
 
-declare global {
-    let prisma: PrismaClient | undefined;
+const prismaClientSingleton = () => {
+  return new PrismaClient()
 }
 
-// @ts-expect-error VERCEL
-const db = globalThis.prisma || new PrismaClient();
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
+} & typeof global;
 
-// @ts-expect-error VERCEL
-if(process.env.NODE_ENV !== 'production') globalThis.prisma = db;
+export const db = globalThis.prismaGlobal ?? prismaClientSingleton()
 
-export { db };
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = db;
