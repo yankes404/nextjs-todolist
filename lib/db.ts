@@ -4,10 +4,10 @@ declare global {
     let prisma: PrismaClient | undefined;
 }
 
-// @ts-expect-error
+// @ts-expect-error VERCEL
 const db = globalThis.prisma || new PrismaClient();
 
-// @ts-expect-error
+// @ts-expect-error VERCEL
 if(process.env.NODE_ENV !== 'production') globalThis.prisma = db;
 
 export { db };
