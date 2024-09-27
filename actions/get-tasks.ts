@@ -22,8 +22,8 @@ export const getTasks = async (): Promise<Task[]> => {
 
         return tasks;
     } catch (error) {
-        console.error(error);
         if (process.env.NODE_ENV !== "production") {
+            console.error(error);
             throw new Error("Erroe while fetching user tasks!");
         }
 
