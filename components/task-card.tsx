@@ -3,7 +3,7 @@ import { FaTrash } from "react-icons/fa6";
 import { TaskStatusPicker } from "./task-status-picker";
 import { useUpdateTaskMutation } from "@/hooks/use-update-task-mutation";
 import { toast } from "sonner";
-import { queryClient } from "@/app/layout";
+import { queryClient } from "@/query-client";
 import { DeleteTaskDialog } from "./dialogs/delete-task-dialog";
 
 export const TaskCard = ({

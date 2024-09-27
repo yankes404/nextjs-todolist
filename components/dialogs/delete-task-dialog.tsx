@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { FaSpinner, FaTrash } from "react-icons/fa6";
 import { toast } from "sonner";
-import { queryClient } from "@/app/layout";
+import { queryClient } from "@/query-client";
 
 interface Props {
     id: string;

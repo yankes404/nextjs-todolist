@@ -33,7 +33,7 @@ import { SuccessMessage } from "../form/success-message";
 import { ErrorMessage } from "../form/error-message";
 
 import { FaPlus, FaSpinner } from "react-icons/fa6";
-import { queryClient } from "@/app/layout";
+import { queryClient } from "@/query-client";
 
 interface Props {
     children: React.ReactNode;
