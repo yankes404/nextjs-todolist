@@ -6,6 +6,7 @@ import { TaskCard } from "@/components/task-card";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useDebounce } from "@/hooks/use-debounce";
 import { useTasksQuery } from "@/hooks/use-tasks-query";
 import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
@@ -26,24 +27,33 @@ export default function Home() {
   const { data, isPending } = useTasksQuery();
 
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search);
 
   useEffect(() => {
     setSearch(qParam || "");
-  }, [qParam]);
+  }, []);
 
-  const searchedData = useMemo(() => data ? data.filter((task) => {
-    const lowerSearch = search.toLowerCase();
-    const title = task.title.toLowerCase();
 
-    return title.includes(lowerSearch) || lowerSearch.includes(title);
-  }) : [], [data, search]);
-
-  function handleSearchChange (value: string) {
+  const searchedData = useMemo(() => {
     const params = new URLSearchParams(searchParams);
-    if (value) params.set("q", value);
+    if (debouncedSearch) params.set("q", debouncedSearch);
     else params.delete("q");
 
     router.push(`${pathname}?${params.toString()}`);
+
+    if (!data) return [];
+
+    return data.filter((task) => {
+      const lowerSearch = debouncedSearch.toLowerCase();
+      const title = task.title.toLowerCase();
+  
+      return title.includes(lowerSearch) || lowerSearch.includes(title);
+    })
+
+  }, [data, debouncedSearch]);
+
+  function handleSearchChange (value: string) {
+    setSearch(value);
   }
 
   return (
